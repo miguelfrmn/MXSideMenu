@@ -7,24 +7,25 @@ MXSideMenu is a simple project for adding a side menu like the one used on the F
 - In you AppDelegate.h modify your - (BOOL)application:didFinishLaunchingWithOptions: so it looks like this:
 
 
-  ```objective-c
-    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    // Override point for customization after application launch.
-    
-    _rootController = [[MXSideMenuViewController alloc] init];
+```objective-c
+self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+// Override point for customization after application launch.
 
-    FirstViewController* first = [[FirstViewController alloc] init];
-    SecondViewController* second = [[SecondViewController alloc] init];
-    ThirdViewController* third = [[ThirdViewController alloc] init];
-    
-    [_rootController addViewController:first Title:@"First" Icon:@"icon_radar.png"];
-    [_rootController addViewController:second Title:@"Second" Icon:@"icon_radar.png"];
-    [_rootController addViewController:third Title:@"Third" Icon:@"icon_radar.png"];
-   
-    self.window.rootViewController = _rootController;
-    
-    [self.window makeKeyAndVisible];
-    return YES; ```
+_rootController = [[MXSideMenuViewController alloc] init];
+
+FirstViewController* first = [[FirstViewController alloc] init];
+SecondViewController* second = [[SecondViewController alloc] init];
+ThirdViewController* third = [[ThirdViewController alloc] init];
+
+[_rootController addViewController:first Title:@"First" Icon:@"icon_radar.png"];
+[_rootController addViewController:second Title:@"Second" Icon:@"icon_radar.png"];
+[_rootController addViewController:third Title:@"Third" Icon:@"icon_radar.png"];
+
+self.window.rootViewController = _rootController;
+
+[self.window makeKeyAndVisible];
+return YES; 
+```
 
 
 # License
