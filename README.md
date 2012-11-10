@@ -3,13 +3,10 @@
 MXSideMenu is a simple project for adding a side menu like the one used on the Facebook, Path and Google+ iOS apps. 
 
 ![](http://i.imgur.com/Lc1Zs.png)
- 
-![](http://i.imgur.com/1gmyN.png)
-
 
 # How to use
 
-- Copy the files MXSideMenuViewController.h, MXSideMenuViewController.m and MXSideMenuViewController.xib into your project.
+- Copy the files MXSideMenuViewController.h, MXSideMenuViewController.m and MXSideMenuViewController.xib into your project. Also copy the content of the images folder.
 - In you AppDelegate.h modify your - (BOOL)application:didFinishLaunchingWithOptions: so it looks like this:
 
 ```objective-c
