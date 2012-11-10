@@ -68,7 +68,7 @@
     if([self.childViewControllers count] == 1)
     {
         [_contentView addSubview:controller.view];
-    }
+    } 
     
    
     
