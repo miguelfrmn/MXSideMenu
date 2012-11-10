@@ -7,7 +7,8 @@ MXSideMenu is a simple project for adding a side menu like the one used on the F
 - In you AppDelegate.h modify your - (BOOL)application:didFinishLaunchingWithOptions: so it looks like this:
 
 
-  ```self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+  ```objective-c
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     
     _rootController = [[MXSideMenuViewController alloc] init];
