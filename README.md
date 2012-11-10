@@ -2,8 +2,8 @@
 
 MXSideMenu is a simple project for adding a side menu like the one used on the Facebook, Path and Google+ iOS apps. 
 
-[![](http://i.imgur.com/Lc1Zs.png)
-[![](http://i.imgur.com/1gmyN.png)
+![](http://i.imgur.com/Lc1Zs.png)
+![](http://i.imgur.com/1gmyN.png)
 
 
 # How to use
