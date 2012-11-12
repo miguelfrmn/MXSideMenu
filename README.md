@@ -7,7 +7,7 @@ MXSideMenu is a project for adding a simple side menu like the one used on the F
 # How to use
 
 - Copy the files MXSideMenuViewController.h, MXSideMenuViewController.m and MXSideMenuViewController.xib into your project. Also copy the content of the images folder.
-- In you AppDelegate.h modify your - (BOOL)application:didFinishLaunchingWithOptions: so it looks like this:
+- In you AppDelegate.m modify your - (BOOL)application:didFinishLaunchingWithOptions: so it looks like this:
 
 ```objective-c
 	self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
