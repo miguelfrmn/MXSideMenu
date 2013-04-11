@@ -25,8 +25,6 @@
 		49D62172164DA09C000AB699 /* icon_radar.png in Resources */ = {isa = PBXBuildFile; fileRef = 49D62171164DA09C000AB699 /* icon_radar.png */; };
 		49D62173164DA119000AB699 /* MXSideMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49D62160164D9DDB000AB699 /* MXSideMenuViewController.m */; };
 		49D62174164DA127000AB699 /* MXSideMenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 49D62161164D9DDB000AB699 /* MXSideMenuViewController.xib */; };
-		49D62176164DA1A4000AB699 /* menu_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 49D62175164DA1A4000AB699 /* menu_bg.png */; };
-		49D62178164DA5B9000AB699 /* btn_selected_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 49D62177164DA5B9000AB699 /* btn_selected_bg.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,8 +54,6 @@
 		49D6216D164D9F7D000AB699 /* ThirdViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThirdViewController.m; sourceTree = "<group>"; };
 		49D6216E164D9F7D000AB699 /* ThirdViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ThirdViewController.xib; sourceTree = "<group>"; };
 		49D62171164DA09C000AB699 /* icon_radar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_radar.png; sourceTree = "<group>"; };
-		49D62175164DA1A4000AB699 /* menu_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu_bg.png; sourceTree = "<group>"; };
-		49D62177164DA5B9000AB699 /* btn_selected_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_selected_bg.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,8 +129,6 @@
 		49D62179164DA953000AB699 /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				49D62177164DA5B9000AB699 /* btn_selected_bg.png */,
-				49D62175164DA1A4000AB699 /* menu_bg.png */,
 				49D62171164DA09C000AB699 /* icon_radar.png */,
 			);
 			name = Images;
@@ -216,8 +210,6 @@
 				49D62170164D9F7D000AB699 /* ThirdViewController.xib in Resources */,
 				49D62172164DA09C000AB699 /* icon_radar.png in Resources */,
 				49D62174164DA127000AB699 /* MXSideMenuViewController.xib in Resources */,
-				49D62176164DA1A4000AB699 /* menu_bg.png in Resources */,
-				49D62178164DA5B9000AB699 /* btn_selected_bg.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -341,6 +333,7 @@
 				49D6215E164D9CDB000AB699 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

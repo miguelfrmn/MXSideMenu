@@ -8,13 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MXSideMenuViewController : UIViewController
+@interface MXSideMenuViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
-@property (nonatomic, retain) NSMutableArray* viewControllers;
-@property (nonatomic, retain) NSMutableArray* botones;
+@property (nonatomic, retain) NSMutableArray* images;
+@property (nonatomic, retain) NSMutableArray* titles;
+
 @property (nonatomic, retain) UIView* contentView;
-@property (nonatomic, retain) UIView* menuView;
 @property (nonatomic, retain) UIButton* blockView;
+@property (strong, nonatomic) IBOutlet UITableView *tableView;
+
 
 - (void) addViewController: (UIViewController*) controller Title:(NSString*)title Icon: (NSString*) icon;
 

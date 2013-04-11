@@ -18,113 +18,112 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        _menuView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 176, self.view.bounds.size.height)];
-        [self.view addSubview:_menuView];
         
-        _contentView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height)];
+        [self.view bringSubviewToFront:_tableView];
+        
+        _contentView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].applicationFrame.size.width, [UIScreen mainScreen].applicationFrame.size.height)];
         _contentView.backgroundColor = [UIColor grayColor];
         [self.view addSubview:_contentView];
         
         _blockView = [UIButton buttonWithType:UIButtonTypeCustom];
-        _blockView.frame = CGRectMake(176, 0, 176, self.view.bounds.size.height);
+        _blockView.backgroundColor = [UIColor greenColor];
+        _blockView.frame = CGRectMake(176, 0, 176, [UIScreen mainScreen].applicationFrame.size.height);
         [_blockView addTarget:self action:@selector(toggleMenu) forControlEvents:UIControlEventTouchUpInside];
         _blockView.backgroundColor = [UIColor clearColor];
         _blockView.hidden = YES;
         [self.view addSubview:_blockView];
         
-       
-
-        _botones = [[NSMutableArray alloc] init];
+        _images = [[NSMutableArray alloc] init];
+        _titles = [[NSMutableArray alloc] init];
     }
     return self;
 }
 
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return [self.childViewControllers count];
+}
+
 - (void) addViewController: (UIViewController*) controller Title:(NSString*)title Icon: (NSString*) icon {
     
-    UIImageView *divider = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"menu_divider.png"]];
-    divider.frame = CGRectMake(0, 0 + (45 * [self.childViewControllers count]),176,2);
-    [_menuView addSubview:divider];
-    
-    UIImageView *icono = [[UIImageView alloc] initWithImage:[UIImage imageNamed:icon]];
-    icono.frame = CGRectMake(10, 12 + (45 * [self.childViewControllers count]),25,25);
-    [_menuView addSubview:icono];
-    
-    UITextView* titulo = [[UITextView alloc] initWithFrame:CGRectMake(35, 5 + (45 * [self.childViewControllers count]), 100, 30)];
-    titulo.text = title;
-    titulo.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:18];
-    titulo.textColor = [UIColor whiteColor];
-    titulo.backgroundColor = [UIColor clearColor];
-    [_menuView addSubview:titulo];
-
-    UIButton *boton = [UIButton buttonWithType:UIButtonTypeCustom];
-    boton.frame = CGRectMake(0, 3 + (45 * [self.childViewControllers count]), 176, 42);
-    [boton setBackgroundImage:[UIImage imageNamed:@"btn_selected_bg.png"] forState:UIControlStateHighlighted];
-    [boton addTarget:self action:@selector(buttonTapped:) forControlEvents:UIControlEventTouchUpInside];
-    [_botones addObject:boton];
-    [_menuView addSubview:boton];
+    [_titles addObject:title];    
+    [_images addObject:icon];
     
     [self addChildViewController:controller];
     
     if([self.childViewControllers count] == 1)
     {
+         controller.view.frame = _contentView.bounds;
         [_contentView addSubview:controller.view];
-    } 
+    }
     
+    [_tableView reloadData];
    
-    
 }
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    static NSString *CellIdentifier = @"MenuItemCellIdentifier";
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+    }
+    
+    NSString* title = (NSString*)[_titles objectAtIndex:indexPath.row];
+    NSString* imageName = (NSString*)[_images objectAtIndex:indexPath.row];
+    
+    cell.selectionStyle = UITableViewCellSelectionStyleGray;
+
+    cell.textLabel.textColor = [UIColor whiteColor];
+    cell.textLabel.text = title;
+    
+    
+    cell.imageView.image = [UIImage imageNamed:imageName];
+    
+    return cell;
+}
+
 
 - (void) toggleMenu {
     [UIView beginAnimations:@"Menu Slide" context:nil];
     [UIView setAnimationDuration:0.2];
     
-    if(_contentView.frame.origin.x == 0)
+    if(_contentView.frame.origin.x == 0) // content shown
     {
         _blockView.hidden = NO;
-        CGRect newFrame = CGRectOffset(_contentView.frame, _menuView.frame.size.width, 0.0);
+        CGRect newFrame = CGRectOffset(_contentView.frame, _tableView.frame.size.width, 0.0);
         _contentView.frame = newFrame;
     }
-    else
+    else // content hiden
     {
         _blockView.hidden = YES;
-        CGRect newFrame = CGRectOffset(_contentView.frame, -(_menuView.frame.size.width), 0.0);
+        CGRect newFrame = CGRectOffset(_contentView.frame, -(_tableView.frame.size.width), 0.0);
         _contentView.frame = newFrame;
     }
     
     [UIView commitAnimations];
 }
-
--(void) buttonTapped:(id)sender {
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+{
+    return [UIView new];
     
-    int index = [_botones indexOfObject:sender];
+    // If you are not using ARC:
+    // return [[UIView new] autorelease];
+}
+
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     if([_contentView.subviews count] == 1){
         [[_contentView.subviews objectAtIndex:0] removeFromSuperview];
     }
     
-    UIViewController* controller = (UIViewController*)[self.childViewControllers objectAtIndex:index];
-    
+    UIViewController* controller = (UIViewController*)[self.childViewControllers objectAtIndex:indexPath.row];
     controller.view.frame = _contentView.bounds;
-    
     [_contentView addSubview:controller.view];
-       
+    
     [self toggleMenu];
     
-}
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-	
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-}
-- (void)viewDidUnload {
-        
-    [super viewDidUnload];
-   
 }
 @end
